@@ -221,9 +221,9 @@ Build your CLI like a web API — don't trust user input. Agents hallucinate dif
 
 **7. Define Requirements**
 
-After defining the requirements and before proceeding to Step 8 (Create Roadmap), run `/agent-dx-cli-scale` to validate the requirements against the 7-axis Agent DX CLI Scale framework.
+After defining the requirements and before proceeding to Step 8 (Create Roadmap), run `/agent-dx-cli-eval` to validate the requirements against the 8-axis Agent DX CLI Evaluation framework.
 
-**Target score:** 16-21 (Agent-First)
+**Target score:** 21-24 (Agent-First)
 
 This evaluation identifies gaps in the requirements while they are still cheap to fix.
 
@@ -240,6 +240,6 @@ After reading the above context, invoke `/gsd-new-project` and apply the workflo
 ## References
 
 - `references/rewrite-your-cli-for-ai-agents.md` — Full blog post with detailed explanations
-- `references/agent-dx-cli-scale.md` — 7-axis evaluation framework
+- `references/agent-dx-cli-scale.md` — Original 7-axis evaluation framework
 - [Google Workspace CLI](https://github.com/googleworkspace/cli) — Reference implementation
-- `/agent-dx-cli-scale` skill — Evaluation framework
+- `../agent-dx-cli-eval/SKILL.md` — Improved 8-axis evaluation framework (use this)
