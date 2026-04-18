@@ -268,7 +268,5 @@ When completing an evaluation, produce:
 ## References
 
 - `../gsd-new-cli-project/references/rewrite-your-cli-for-ai-agents.md` — Full principles blog post
-- `references/agent-dx-cli-scale.md` — Original 7-axis scale (jpoehnelt/skills)
-- `/agent-dx-cli-scale` skill — Third-party evaluation skill (7 axes, 0-21 score)
+- `references/agent-dx-cli-scale.md` — Original 7-axis scale
 - [Google Workspace CLI](https://github.com/googleworkspace/cli) — Reference implementation
-- [MCP Abstraction Tax](https://justin.poehnelt.com/posts/the-mcp-abstraction-tax/) — Follow-up on protocol layers
