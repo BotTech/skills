@@ -242,3 +242,4 @@ After reading the above context, invoke `/gsd-new-project` and apply the workflo
 - `references/rewrite-your-cli-for-ai-agents.md` — Full blog post with detailed explanations
 - [Google Workspace CLI](https://github.com/googleworkspace/cli) — Reference implementation
 - `../agent-dx-cli-eval/SKILL.md` — Improved 8-axis evaluation framework (use this)
+- `../agent-dx-cli-eval/references/agent-dx-cli-scale.md` — Original 7-axis scale
