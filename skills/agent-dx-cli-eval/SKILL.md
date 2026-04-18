@@ -11,10 +11,6 @@ compatibility:
 
 Evaluate any CLI against agent-first design principles. Score each axis from 0–3, then sum for a total between 0–24.
 
-> Human DX optimizes for discoverability and forgiveness.
-> Agent DX optimizes for predictability and defense-in-depth.
-> — Justin Poehnelt
-
 ## Evaluation Process
 
 1. **Explore the CLI** — Run `--help`, examine source/docs, test key commands
@@ -269,4 +265,3 @@ When completing an evaluation, produce:
 
 - `../gsd-new-cli-project/references/rewrite-your-cli-for-ai-agents.md` — Full principles blog post
 - `references/agent-dx-cli-scale.md` — Original 7-axis scale
-- [Google Workspace CLI](https://github.com/googleworkspace/cli) — Reference implementation
