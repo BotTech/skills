@@ -1,0 +1,4 @@
+[submodule "skills/agent-first-cli/assets/samples/gitignorer"]
+	path = skills/agent-first-cli/assets/samples/gitignorer
+	url = git@github.com:BotTech/gitignore.git
+	branch = main
