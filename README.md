@@ -18,6 +18,36 @@ This repository contains custom skills that extend Claude Code's capabilities. E
 
 | Skill | Description | Trigger |
 |-------|-------------|---------|
-| [agent-dx-cli-eval](./skills/agent-dx-cli-eval/) | Evaluate any CLI against agent-first design principles. Score 8 axes (0-3 each) for a total of 0-24: Machine-Readable Output, Raw Payload Input, Schema Introspection, Context Window Discipline, Input Hardening, Safety Rails, Agent Knowledge Packaging, and Multi-Surface Architecture. Includes verification steps and structured output format. | "evaluate this CLI", "agent dx score", "is this cli agent-ready", "cli agent review", or when assessing CLI quality for AI agents. |
-| [gsd-new-cli-project](./skills/gsd-new-cli-project/) | Initialize a new CLI project with agent-first design context. Wraps `/gsd-new-project` and injects domain-specific guidance for the 4 parallel research agents (Stack, Features, Architecture, Pitfalls) based on the Agent DX CLI Scale framework. | Starting a new CLI project, creating a command-line tool, or whenever CLI + GSD is mentioned. |
+| [agent-first-cli](./skills/agent-first-cli/) | Design, validate, and verify agent-first command-line interfaces. Research/planning + plan-mode and impl-mode checks against the 8 agent-first axes (discoverability, invocation, I/O, state, errors, exit codes, idempotency, examples). | "agent-first CLI", "new CLI project", "refactor this CLI for LLM use", "score my CLI", "validate my CLI plan", "verify my CLI build". |
 | [timesheet](./skills/timesheet/) | Manage weekly timesheets in Google Sheets with NZ public holiday tracking. Per-day breakdown of work, PTO, holiday, and unpaid hours. Cumulative totals and remaining balances. | "timesheet", "fill timesheet", "record PTO", "record leave", "update hours", "check hours", "PTO remaining", "holiday balance". |
+
+## Updating from before v0.2
+
+The prior `gsd-new-cli-project` skill (and the standalone `agent-dx-cli-eval` evaluator) have been merged into the single [`agent-first-cli`](./skills/agent-first-cli/) skill. Users who installed the old name should run:
+
+```bash
+npx skills remove gsd-new-cli-project
+npx skills add https://github.com/bottech/skills
+```
+
+Do **not** keep both `gsd-new-cli-project` and `agent-first-cli` installed side-by-side — they cover the same surface and double-loading causes routing confusion.
+
+## Sample asset
+
+The `agent-first-cli` skill ships a sample CLI under `skills/agent-first-cli/assets/samples/gitignorer/`. This directory is a git submodule pointing at [BotTech/gitignore](https://github.com/BotTech/gitignore).
+
+**If you cloned this repo directly:**
+
+```bash
+git clone --recurse-submodules https://github.com/bottech/skills.git
+# or, for an existing clone:
+git submodule update --init --recursive
+```
+
+**If you installed via `npx skills add`** (which uses a shallow, non-recursive clone), initialize the sample manually:
+
+```bash
+git clone --depth 1 https://github.com/BotTech/gitignore.git ~/.agents/skills/agent-first-cli/assets/samples/gitignorer
+```
+
+(Adjust the destination path if your `npx skills` install location differs.)
