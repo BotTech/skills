@@ -1,0 +1,31 @@
+=== Check 1: agent-first-cli appears exactly once in Skills Index ===
+agent-first-cli rows in Skills Index: 0
+
+=== Check 2: old skills absent from Skills Index ===
+gsd-new-cli-project rows in Skills Index: 0
+agent-dx-cli-eval rows in Skills Index: 0
+
+=== Check 3: migration note present ===
+PASS: migration section header present
+
+=== Check 4: submodule init step documented ===
+PASS: submodule init step documented
+
+=== Check 5: skills-lock.json not committed ===
+Committed skills-lock.json files: 0
+0
+
+=== Check 6: submodule status clean ===
+ fb4357f7bbdda68d2ae7366e69fa4afa8c99e7c1 skills/agent-first-cli/assets/samples/gitignorer (heads/main)
+
+=== Check 7: .gitmodules has gitignorer entry ===
+[submodule "skills/agent-first-cli/assets/samples/gitignorer"]
+	path = skills/agent-first-cli/assets/samples/gitignorer
+	url = git@github.com:BotTech/gitignore.git
+	branch = main
+
+=== Check 8: README description matches SKILL.md frontmatter ===
+--- README skills-index row ---
+
+--- SKILL.md frontmatter description ---
+description: "Design, validate, and verify agent-first command-line interfaces. Provides research, planning, and lifecycle hooks for starting a new CLI project or refactoring an existing CLI to score well on the 8 agent-first axes (discoverability, invocation, I/O, state, errors, exit codes, idempotency, examples). Use when the user says 'agent-first CLI', 'new CLI project', 'CLI for agents', 'refactor this CLI for LLM use', 'score my CLI', 'validate my CLI plan', or 'verify my CLI build'."

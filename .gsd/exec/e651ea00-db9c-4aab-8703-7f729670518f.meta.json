@@ -1,0 +1,18 @@
+{
+  "id": "e651ea00-db9c-4aab-8703-7f729670518f",
+  "runtime": "bash",
+  "purpose": "S06 verification: README skills index has exactly one agent-first-cli row and zero old-skill rows",
+  "script_chars": 1715,
+  "started_at": "2026-06-06T06:09:24.457Z",
+  "finished_at": "2026-06-06T06:09:24.605Z",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "duration_ms": 148,
+  "stdout_bytes": 1514,
+  "stderr_bytes": 0,
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "stdout_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/e651ea00-db9c-4aab-8703-7f729670518f.stdout",
+  "stderr_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/e651ea00-db9c-4aab-8703-7f729670518f.stderr"
+}
