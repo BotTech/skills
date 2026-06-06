@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "taskId": "T01",
+  "unitId": "M001/S05/T01",
+  "timestamp": 1780725626347,
+  "passed": true,
+  "discoverySource": "task-plan",
+  "checks": [
+    {
+      "command": "test -s /Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/README.md && grep -c \"^| Axis:\" /Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/README.md",
+      "exitCode": 0,
+      "durationMs": 15,
+      "verdict": "pass"
+    }
+  ]
+}

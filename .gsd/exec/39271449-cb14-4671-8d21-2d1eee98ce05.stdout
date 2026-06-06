@@ -1,0 +1,70 @@
+=== 1. All 5 reference files exist ===
+PASS: skills/agent-first-cli/references/stack.md exists
+PASS: skills/agent-first-cli/references/features.md exists
+PASS: skills/agent-first-cli/references/architecture.md exists
+PASS: skills/agent-first-cli/references/pitfalls.md exists
+PASS: skills/agent-first-cli/references/requirements.md exists
+
+=== 2. requirements.md: ≥8 starter R###s with Axis: N tags, all 8 axes appear ===
+NOTE: requirements.md has 12 ### R### blocks
+PASS: ≥8 starter R### blocks (12)
+NOTE: requirements.md covers 8 of 8 axes via 'Axis: N' tags
+PASS: all 8 axes present in requirements.md
+
+=== 3. AGENTS.md referenced by role in requirements.md ===
+PASS: AGENTS.md referenced by role
+
+=== 4. features.md contains ## Cross-Check vs REQUIREMENTS.md ===
+PASS: features.md has Cross-Check section
+
+=== 5. pitfalls.md: ≥8 pitfalls covering all 8 axes ===
+NOTE: pitfalls.md has 0 pitfall blocks
+FAIL: fewer than 8 pitfalls (0)
+NOTE: pitfalls.md covers 8 of 8 axes
+PASS: all 8 axes present in pitfalls.md
+
+=== 6. R013: stable axis IDs only — no #axis-N anchors, no references/eval.md#axis-N deep links ===
+NOTE: forbidden axis anchors: 0
+PASS: no forbidden axis anchors
+
+=== 7. R011: no imperative .gsd/ write instructions ===
+NOTE: imperative .gsd/ write instructions: 0
+PASS: no .gsd/ write instructions
+
+=== 8. R012: no gsd-pi coupling tokens (gsd_exec, gsd_journal_query, etc.) ===
+NOTE: gsd-pi coupling tokens: 0
+PASS: no gsd-pi coupling tokens
+
+=== 9. Per-file line count (soft budget ≤ 250) ===
+PASS: stack.md: 50 lines (≤250)
+PASS: features.md: 168 lines (≤250)
+PASS: architecture.md: 81 lines (≤250)
+PASS: pitfalls.md: 97 lines (≤250)
+PASS: requirements.md: 158 lines (≤250)
+
+=== 10. Each reference file has stable axis citations (Axis N or Axis: N) ===
+PASS: stack.md: 22 axis citations
+PASS: features.md: 48 axis citations
+PASS: architecture.md: 13 axis citations
+PASS: pitfalls.md: 8 axis citations
+PASS: requirements.md: 17 axis citations
+
+=== 11. shape-match: GSD-template-style headers present per file ===
+PASS: requirements.md has expected GSD-template-shaped headers
+PASS: features.md has axis-aligned feature section headers
+PASS: stack.md has Recommended Stack + What NOT to Use headers
+FAIL: architecture.md missing component-table header
+FAIL: pitfalls.md missing Pitfalls section header
+
+=== 12. Done-when: starter R###s use GSD-template block format (Class/Status/Description/Why/Source) ===
+FAIL: Class: only 0 occurrences (need ≥8)
+FAIL: Status: only 0 occurrences (need ≥8)
+FAIL: Description: only 0 occurrences (need ≥8)
+FAIL: Why: only 0 occurrences (need ≥8)
+FAIL: Source: only 0 occurrences (need ≥8)
+
+=================================
+TOTAL FAILURES: 8
+=================================
+
+FINAL: 8 failures

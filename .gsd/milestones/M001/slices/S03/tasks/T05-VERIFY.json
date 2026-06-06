@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "taskId": "T05",
+  "unitId": "M001/S03/T05",
+  "timestamp": 1780723707592,
+  "passed": true,
+  "discoverySource": "task-plan",
+  "checks": [
+    {
+      "command": "test -f skills/agent-first-cli/references/pitfalls.md",
+      "exitCode": 0,
+      "durationMs": 14,
+      "verdict": "pass"
+    }
+  ]
+}

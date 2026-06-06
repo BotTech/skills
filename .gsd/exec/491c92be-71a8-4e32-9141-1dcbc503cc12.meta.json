@@ -1,0 +1,18 @@
+{
+  "id": "491c92be-71a8-4e32-9141-1dcbc503cc12",
+  "runtime": "bash",
+  "purpose": "Search README for forbidden anchor and deep-link forms per UAT Test 6",
+  "script_chars": 945,
+  "started_at": "2026-06-06T06:05:34.297Z",
+  "finished_at": "2026-06-06T06:05:34.328Z",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "duration_ms": 31,
+  "stdout_bytes": 303,
+  "stderr_bytes": 0,
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "stdout_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/491c92be-71a8-4e32-9141-1dcbc503cc12.stdout",
+  "stderr_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/491c92be-71a8-4e32-9141-1dcbc503cc12.stderr"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "9f49a8a1-d6b0-4b39-abc1-5ec8d56f9226",
+  "runtime": "bash",
+  "purpose": "Verify submodule populated: ls gitignorer/src shows real source files",
+  "script_chars": 638,
+  "started_at": "2026-06-06T06:05:34.295Z",
+  "finished_at": "2026-06-06T06:05:34.432Z",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "duration_ms": 137,
+  "stdout_bytes": 539,
+  "stderr_bytes": 0,
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "stdout_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/9f49a8a1-d6b0-4b39-abc1-5ec8d56f9226.stdout",
+  "stderr_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/9f49a8a1-d6b0-4b39-abc1-5ec8d56f9226.stderr"
+}

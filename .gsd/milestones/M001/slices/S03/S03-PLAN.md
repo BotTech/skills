@@ -26,7 +26,7 @@ Upstream surfaces consumed: SKILL.md sub-command routing (S02), AGENTS.md strict
   - Files: `/Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/references/requirements.md`
   - Verify: test -f skills/agent-first-cli/references/requirements.md
 
-- [ ] **T02: Author features.md (8 axis-aligned feature tables + cross-check)** `est:45m`
+- [x] **T02: Author features.md (8 axis-aligned feature tables + cross-check)** `est:45m`
   Why: features.md is the densest file (8 axis-aligned feature tables plus differentiators and anti-features). It cross-references the starter R### IDs from T01's requirements.md, so it must run after T01. The `## Cross-Check vs REQUIREMENTS.md` section is the structural bridge between "what features the agent-first CLI ships" and "what requirements trace to those features."
   - Files: `/Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/references/features.md`
   - Verify: test -f skills/agent-first-cli/references/features.md
@@ -36,17 +36,17 @@ Upstream surfaces consumed: SKILL.md sub-command routing (S02), AGENTS.md strict
   - Files: `/Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/references/stack.md`
   - Verify: test -f skills/agent-first-cli/references/stack.md
 
-- [ ] **T04: Author architecture.md (component table + data flow)** `est:40m`
+- [x] **T04: Author architecture.md (component table + data flow)** `est:40m`
   Why: architecture.md shape-matches GSD's ARCHITECTURE.md template and lifts the component table verbatim from the source gsd-new-cli-project SKILL.md `<context research_type="architecture">` block. It owns the structural contract for how an agent-first CLI's components divide axis responsibilities — every component row tags which axis(es) it owns. Independent of T03/T05.
   - Files: `/Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/references/architecture.md`
   - Verify: test -f skills/agent-first-cli/references/architecture.md
 
-- [ ] **T05: Author pitfalls.md (8 pitfalls covering all 8 axes)** `est:35m`
+- [x] **T05: Author pitfalls.md (8 pitfalls covering all 8 axes)** `est:35m`
   Why: pitfalls.md shape-matches GSD's PITFALLS.md template and lifts the 5-pitfall seed set from gsd-new-cli-project SKILL.md `<context research_type="pitfalls">` block, then extends to 8 pitfalls so every axis has at least one pitfall that threatens it. Independent of T03/T04 — runs in any order against them.
   - Files: `/Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/references/pitfalls.md`
   - Verify: test -f skills/agent-first-cli/references/pitfalls.md
 
-- [ ] **T06: Run S03 verification battery (shape, axis tags, R011/R012/R013 gates)** `est:30m`
+- [x] **T06: Run S03 verification battery (shape, axis tags, R011/R012/R013 gates)** `est:30m`
   Why: S03's contract is mechanical — every file has shape requirements, every axis needs tags, every forbidden-token gate must pass. This task runs the full battery as a single bash script via gsd_exec and reports pass/fail per check. It does not produce new files; it produces a verification log that future slices (S04, S05) can point at as proof S03's content is sound.
   - Files: `/Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/references/requirements.md`, `/Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/references/features.md`, `/Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/references/stack.md`, `/Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/references/architecture.md`, `/Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/references/pitfalls.md`
   - Verify: test -f skills/agent-first-cli/references/requirements.md

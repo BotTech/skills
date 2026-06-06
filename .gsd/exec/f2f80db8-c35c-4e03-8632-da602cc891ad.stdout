@@ -1,0 +1,31 @@
+=== Must-have 1: 8 axis rows ===
+8
+
+=== Must-have 3: forbidden anchors/deep-links ===
+#axis-N anchors:
+1
+references/<file>.md# deep links:
+0
+0
+
+=== Must-have 3b: forbidden harness tokens ===
+gsd_* tool calls:
+0
+0
+slash-command tokens /command:
+1
+
+=== Must-have 4: submodule init snippet ===
+27:The skill ships a reference TypeScript/Node CLI at `assets/samples/gitignorer/` as a git submodule. At time of writing the pinned commit is `fb4357f7`. The sample demonstrates all 8 agent-first axes; the `verify` sub-command can run against it to produce a passing report.
+32:git submodule update --init --recursive skills/agent-first-cli/assets/samples/gitignorer
+
+=== Must-have 5: stays out of S06 lane (no repo-root README editing) ===
+(informational — content scope, not file modification)
+0
+0
+
+=== Must-have 6: no .gsd/ writes or harness coupling ===
+0
+0
+
+ALL DONE

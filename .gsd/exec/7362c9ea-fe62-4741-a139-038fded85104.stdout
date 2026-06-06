@@ -1,0 +1,83 @@
+=== Existence checks (5) ===
+PASS: eval.md exists
+PASS: validate.md exists
+PASS: verify.md exists
+PASS: gapped-requirements.md fixture exists
+PASS: expected-validate-report.md fixture exists
+
+=== eval.md rubric spine (8 axes) ===
+PASS: eval.md has all 8 axis H2s (Axis 1..8) (count=8)
+PASS: eval.md has Citation Convention H2 (count=1)
+PASS: eval.md has 8 Pass Criteria blocks (count=8)
+PASS: eval.md has 8 Common Evidence blocks (count=8)
+PASS: eval.md has 8 Failure Symptoms blocks (count=8)
+
+=== validate.md consumes eval.md + cites AGENTS.md ===
+PASS: validate.md references eval.md (count=4)
+PASS: validate.md references AGENTS.md by name (count=3)
+PASS: validate.md defines Report Format (count=1)
+PASS: validate.md defines Worked Example (count=1)
+PASS: validate.md defines Error Catalog (count=1)
+PASS: validate.md strict rule section (count=1)
+
+=== verify.md consumes eval.md + cites AGENTS.md ===
+PASS: verify.md references eval.md (count=20)
+PASS: verify.md references AGENTS.md by name (count=3)
+PASS: verify.md defines Report Format (count=1)
+PASS: verify.md defines Worked Example (count=1)
+PASS: verify.md defines Error Catalog (count=1)
+PASS: verify.md strict rule section (count=1)
+PASS: verify.md has all 8 per-axis H3 procedures (count=8)
+
+=== Fixture contract ===
+PASS: fixture has 5 R### H3 entries (count=5)
+FAIL: fixture: NO Axis: 5 tag (deliberate gap) (got 0
+0 matches, expected 0)
+PASS: fixture marks Axis 7 out-of-scope (count=3)
+PASS: expected report: verdict fail (count=1)
+PASS: expected report: error_count: 1 (count=1)
+PASS: expected report: Axis 5 UNCOVERED row (count=4)
+
+=== R011: no imperative .gsd/ write instructions ===
+FAIL: eval.md: no imperative-write-.gsd/ patterns (got 0
+0 matches, expected 0)
+FAIL: validate.md: no imperative-write-.gsd/ patterns (got 0
+0 matches, expected 0)
+FAIL: verify.md: no imperative-write-.gsd/ patterns (got 0
+0 matches, expected 0)
+
+=== R012: no harness tokens ===
+FAIL: eval.md: no /gsd-* slash commands (got 0
+0 matches, expected 0)
+FAIL: validate.md: no /gsd-* slash commands (got 0
+0 matches, expected 0)
+FAIL: verify.md: no /gsd-* slash commands (got 0
+0 matches, expected 0)
+FAIL: eval.md: no gsd_* tool names (got 0
+0 matches, expected 0)
+FAIL: validate.md: no gsd_* tool names (got 0
+0 matches, expected 0)
+FAIL: verify.md: no gsd_* tool names (got 0
+0 matches, expected 0)
+
+=== R013: stable axis IDs (no anchors, no deep-links) ===
+FAIL: eval.md: no #axis-N anchors (got 0
+0 matches, expected 0)
+FAIL: validate.md: no #axis-N anchors (got 0
+0 matches, expected 0)
+FAIL: verify.md: no #axis-N anchors (got 0
+0 matches, expected 0)
+FAIL: eval.md: no deep links (got 1 matches, expected 0)
+FAIL: validate.md: no deep links (got 0
+0 matches, expected 0)
+FAIL: verify.md: no deep links (got 0
+0 matches, expected 0)
+
+=== Roadmap success criterion: validate flags gap as error ===
+PASS: fixture+expected pair demonstrates strict-gap error behavior
+PASS: fixture has deliberate Axis 5 gap marker (count=2)
+PASS: expected report has Axis 5 UNCOVERED detail (count=1)
+
+================================
+TOTAL: 47  PASSED: 31  FAILED: 16
+FAILURES PRESENT

@@ -1,0 +1,39 @@
+PASS: skills/agent-first-cli/references/stack.md exists
+PASS: skills/agent-first-cli/references/features.md exists
+PASS: skills/agent-first-cli/references/architecture.md exists
+PASS: skills/agent-first-cli/references/pitfalls.md exists
+PASS: skills/agent-first-cli/references/requirements.md exists
+PASS: requirements.md: 12 R### blocks
+PASS: requirements.md: all 8 axes
+PASS: AGENTS.md by role
+PASS: features.md cross-check
+PASS: pitfalls.md: 8 pitfalls
+PASS: pitfalls.md: all 8 axes
+PASS: R013: no forbidden anchors
+PASS: R011: no .gsd/ write instructions
+PASS: R012: no gsd-pi coupling tokens
+NOTE: stack.md: 50 lines
+NOTE: features.md: 168 lines
+NOTE: architecture.md: 81 lines
+NOTE: pitfalls.md: 97 lines
+NOTE: requirements.md: 158 lines
+PASS: stack.md: 22 axis citations
+PASS: features.md: 48 axis citations
+PASS: architecture.md: 13 axis citations
+PASS: pitfalls.md: 8 axis citations
+PASS: requirements.md: 17 axis citations
+PASS: requirements.md shape
+PASS: features.md shape
+PASS: stack.md shape
+PASS: architecture.md shape
+PASS: pitfalls.md shape
+PASS: block field Class: 12 (≥8)
+PASS: block field Status: 12 (≥8)
+PASS: block field Description: 12 (≥8)
+PASS: block field Why it matters: 12 (≥8)
+PASS: block field Source: 12 (≥8)
+
+=========================
+TOTAL FAILURES: 0
+=========================
+FINAL: 0

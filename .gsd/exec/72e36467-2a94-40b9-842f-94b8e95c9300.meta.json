@@ -1,0 +1,18 @@
+{
+  "id": "72e36467-2a94-40b9-842f-94b8e95c9300",
+  "runtime": "bash",
+  "purpose": "S03 full closure battery — corrected",
+  "script_chars": 4674,
+  "started_at": "2026-06-06T05:30:12.923Z",
+  "finished_at": "2026-06-06T05:30:13.175Z",
+  "exit_code": 3,
+  "signal": null,
+  "timed_out": false,
+  "duration_ms": 252,
+  "stdout_bytes": 1848,
+  "stderr_bytes": 0,
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "stdout_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/72e36467-2a94-40b9-842f-94b8e95c9300.stdout",
+  "stderr_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/72e36467-2a94-40b9-842f-94b8e95c9300.stderr"
+}

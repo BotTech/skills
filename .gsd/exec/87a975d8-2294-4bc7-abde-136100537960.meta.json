@@ -1,0 +1,18 @@
+{
+  "id": "87a975d8-2294-4bc7-abde-136100537960",
+  "runtime": "bash",
+  "purpose": "S04/T04 closure verification battery v2 — 34 assertions with tightened regexes for SKILL.md phrasing, H3 subsections, descriptive-mention carve-out, and meta-mention exclusion",
+  "script_chars": 10139,
+  "started_at": "2026-06-06T05:51:25.226Z",
+  "finished_at": "2026-06-06T05:51:27.329Z",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "duration_ms": 2103,
+  "stdout_bytes": 2536,
+  "stderr_bytes": 0,
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "stdout_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/87a975d8-2294-4bc7-abde-136100537960.stdout",
+  "stderr_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/87a975d8-2294-4bc7-abde-136100537960.stderr"
+}

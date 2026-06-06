@@ -19,13 +19,13 @@
 - [x] **S02: SKILL.md + AGENTS.md + CLAUDE.md + sub-command routing** `risk:medium` `depends:[S01]`
   > After this: agent-first-cli/SKILL.md exists, under 100 lines, advertises 7 sub-commands; AGENTS.md declares strict bidirectional axis<->R### coverage rule; CLAUDE.md is a working symlink to AGENTS.md; each sub-command name appears in SKILL.md with the reference file it loads.
 
-- [ ] **S03: Reference content: stack, features, architecture, pitfalls, requirements** `risk:medium` `depends:[S02]`
+- [x] **S03: Reference content: stack, features, architecture, pitfalls, requirements** `risk:medium` `depends:[S02]`
   > After this: 5 reference files in references/ (stack.md, features.md, architecture.md, pitfalls.md, requirements.md); each file's section headers match its target GSD template; requirements.md includes starter R###s with Axis: N tags; cross-references use stable axis IDs.
 
-- [ ] **S04: validate + verify references consuming eval.md** `risk:high` `depends:[S02,S03]`
+- [x] **S04: validate + verify references consuming eval.md** `risk:high` `depends:[S02,S03]`
   > After this: references/eval.md, validate.md, verify.md exist; validate.md and verify.md both reference eval.md; each defines a structured report format with per-axis status; strict rule (uncovered axis or orphan R### is error) is encoded; running validate against a deliberately gapped REQUIREMENTS.md flags the gap as an error.
 
-- [ ] **S05: Asset verification: gitignorer demonstrates all 8 axes** `risk:low` `depends:[S03]`
+- [x] **S05: Asset verification: gitignorer demonstrates all 8 axes** `risk:low` `depends:[S03]`
   > After this: For each of the 8 axes, a concrete file path in assets/samples/gitignorer/ is identified that demonstrates the axis; a short mapping table in the skill's README documents the axis → file evidence.
 
 - [ ] **S06: Repo-level updates: README, skills-lock.json, migration note** `risk:low` `depends:[S02]`

@@ -1,0 +1,25 @@
+=== ls assets/samples/gitignorer/src ===
+bin.ts
+cli
+commands
+formatters
+index.ts
+parsers
+schema
+services
+=== ls assets/samples/gitignorer/src/commands ===
+examples.ts
+generate.ts
+list.ts
+scan.ts
+schema.ts
+search.ts
+update.ts
+=== ls assets/samples/gitignorer/src/schema ===
+errors.ts
+input.ts
+output.ts
+=== submodule status ===
+ fb4357f7bbdda68d2ae7366e69fa4afa8c99e7c1 skills/agent-first-cli/assets/samples/gitignorer (heads/main)
+=== errors.ts line count ===
+     107 skills/agent-first-cli/assets/samples/gitignorer/src/schema/errors.ts

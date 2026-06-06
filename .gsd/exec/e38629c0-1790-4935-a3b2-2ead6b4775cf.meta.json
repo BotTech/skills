@@ -1,0 +1,18 @@
+{
+  "id": "e38629c0-1790-4935-a3b2-2ead6b4775cf",
+  "runtime": "bash",
+  "purpose": "S04/T04 closure verification battery — 34 assertions across eval/validate/verify references + gapped-requirements + expected-validate-report fixtures",
+  "script_chars": 7603,
+  "started_at": "2026-06-06T05:50:08.387Z",
+  "finished_at": "2026-06-06T05:50:08.551Z",
+  "exit_code": 1,
+  "signal": null,
+  "timed_out": false,
+  "duration_ms": 164,
+  "stdout_bytes": 2776,
+  "stderr_bytes": 0,
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "stdout_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/e38629c0-1790-4935-a3b2-2ead6b4775cf.stdout",
+  "stderr_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/e38629c0-1790-4935-a3b2-2ead6b4775cf.stderr"
+}

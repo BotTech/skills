@@ -1,0 +1,39 @@
+[01] PASS: eval.md exists
+[02] PASS: validate.md exists
+[03] PASS: verify.md exists
+[04] PASS: gapped-requirements.md exists
+[05] PASS: expected-validate-report.md exists
+[06] PASS: eval.md 100-250 lines (actual=232)
+[07] PASS: validate.md 100-200 lines (actual=131)
+[08] PASS: verify.md 100-200 lines (actual=193)
+[09] PASS: validate.md contains 'eval.md'
+[10] PASS: verify.md contains 'eval.md'
+[11] PASS: eval.md has NO routing-table row (no | eval |)
+[12] PASS: SKILL.md calls eval.md 'not a sub-command' (allowing markdown emphasis; matches: 1)
+[13] PASS: validate.md contains 'AGENTS.md'
+[14] PASS: verify.md contains 'AGENTS.md'
+[15] PASS: validate.md does NOT re-enumerate 8 axes inline (count of any-level 'Axis' headers: 0; axes live in eval.md only)
+[16] PASS: verify.md may restate strict rule only if AGENTS.md pointer is co-cited (restatements without co-cite: 0)
+[17] PASS: validate.md contains '## Report Format' (H2)
+[18] PASS: validate.md contains fenced YAML with 'verdict:'
+[19] PASS: validate.md contains 'Axis Coverage Audit' section (any heading level; matches: 1)
+[20] PASS: validate.md contains 'Per-Axis Detail' section (any heading level; matches: 1)
+[21] PASS: validate.md has Worked-Example section header
+[22] PASS: verify.md has Worked-Example section header mentioning gitignorer
+[23] PASS: verify.md cites >=4 distinct gitignorer paths (actual: 5)
+[24] PASS: validate.md documents BOTH Status: out-of-scope form (1) AND Notes-token form (5)
+[25] PASS: validate.md has '## Error Catalog' and lists uncovered-axis/orphan-r###/out-of-scope-without-reason (catalog: 1, errs: 11)
+[26] PASS: verify.md has '## Error Catalog' and lists uncovered-axis-impl (catalog: 1, errs: 3)
+[27] PASS: no imperative .gsd/ write instructions (descriptive/negated mentions allowed; imperative hits: 0)
+[28] PASS: no harness-coupling tokens across all 5 files (hits: 0)
+[29] PASS: no anchor-style axis refs '#axis-N' across eval/validate/verify (hits: 0)
+[30] PASS: no actionable file#section deep links (meta-mentions in prohibition rules allowed; actionable hits: 0)
+[31] PASS: eval.md has exactly 8 '## Axis N:' H2 headers (actual: 8)
+[32] PASS: gapped-requirements.md has exactly 5 '### R###' blocks (actual: 5)
+[33] PASS: gapped-requirements.md contains 'Axis: 5' ZERO times (the deliberate gap; actual: 0)
+[34] PASS: expected-validate-report.md contains verdict: fail (1) AND error_count: 1 (1)
+
+================================
+TOTAL: 34  PASSED: 34  FAILED: 0
+================================
+ALL 34 ASSERTIONS PASSED

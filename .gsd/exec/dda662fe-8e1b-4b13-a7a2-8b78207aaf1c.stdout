@@ -1,0 +1,21 @@
+▶ S05 README evidence table
+  ✔ README exists and is non-empty (2.663875ms)
+  ✔ evidence table has exactly 8 axis rows in axis-aligned order (1.220041ms)
+  ✔ every cited gitignorer path resolves to an existing file (1.150625ms)
+  ✔ Axis 5 cited line range (errors.ts:16-103) contains all 4 error classes (0.355ms)
+  ✔ no #axis-N anchor form appears anywhere in the README (0.419833ms)
+  ✔ no real references/<file>.md# deep-link appears in the README (0.487458ms)
+  ✔ no harness-coupling tokens (gsd_*, /gsd, imperative .gsd/ writes) (2.285166ms)
+  ✔ submodule init snippet is present (0.327584ms)
+  ✔ README mentions AGENTS.md at least once (strict-rule back-pointer) (0.309208ms)
+  ✔ README mentions eval.md at least once (canonical axis list back-pointer) (0.311375ms)
+✔ S05 README evidence table (10.284292ms)
+ℹ tests 10
+ℹ suites 1
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58.745666
+---EXIT: 0

@@ -1,0 +1,8 @@
+S06/T02 skills-lock.json audit (R015)
+
+Findings:
+1. find . -name skills-lock.json -not -path './.gsd/*' -not -path './node_modules/*' -> 0 results.
+2. git ls-files | grep skills-lock.json -> no match (exit 1). No committed skills-lock.json in the BotTech tree.
+3. git submodule status -> fb4357f7... skills/agent-first-cli/assets/samples/gitignorer (heads/main). Clean, initialized, no - or + prefix.
+
+Conclusion: R015's "audit skills-lock.json" is satisfied with no file edit. skills-lock.json is owned by the npx skills CLI and lives outside this repo; it is only relevant to third-party skills installs, never to BotTech's own skills. The mitigation for any prior install referencing the old gsd-new-cli-project path is the v0.2 migration note added to README.md in T01. Submodule wiring remains clean: agent-first-cli/assets/samples/gitignorer resolves at heads/main.
