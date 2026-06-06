@@ -1,0 +1,18 @@
+{
+  "id": "5f99001c-44c0-4365-b906-908b81e344a6",
+  "runtime": "bash",
+  "purpose": "R011 sharp-check — distinguish prohibitions from write instructions",
+  "script_chars": 1048,
+  "started_at": "2026-06-06T04:58:36.323Z",
+  "finished_at": "2026-06-06T04:58:36.354Z",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "duration_ms": 31,
+  "stdout_bytes": 1445,
+  "stderr_bytes": 0,
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "stdout_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/5f99001c-44c0-4365-b906-908b81e344a6.stdout",
+  "stderr_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/5f99001c-44c0-4365-b906-908b81e344a6.stderr"
+}

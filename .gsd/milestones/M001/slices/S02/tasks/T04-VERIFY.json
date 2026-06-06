@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "taskId": "T04",
+  "unitId": "M001/S02/T04",
+  "timestamp": 1780721834467,
+  "passed": true,
+  "discoverySource": "task-plan",
+  "checks": [
+    {
+      "command": "git log --oneline -1 -- skills/agent-first-cli/SKILL.md",
+      "exitCode": 0,
+      "durationMs": 22,
+      "verdict": "pass"
+    }
+  ]
+}

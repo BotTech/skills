@@ -1,0 +1,52 @@
+=== Slice S01 verification ===
+--- 1. .gitmodules exists ---
+exit=0
+--- 2. references/ exists ---
+exit=0
+--- 3. assets/samples/ exists ---
+exit=0
+--- 4. gitignorer submodule populated (package.json present) ---
+exit=0
+--- 5. gsd-new-cli-project removed ---
+exit=0
+--- 6. agent-dx-cli-eval removed ---
+exit=0
+--- 7. timesheet untouched ---
+exit=0
+--- 8. references/.gitkeep present ---
+exit=0
+--- 9. assets/samples/.gitkeep present ---
+exit=0
+--- 10. .gitmodules contents ---
+[submodule "skills/agent-first-cli/assets/samples/gitignorer"]
+	path = skills/agent-first-cli/assets/samples/gitignorer
+	url = git@github.com:BotTech/gitignore.git
+	branch = main
+--- 11. git submodule status ---
+ fb4357f7bbdda68d2ae7366e69fa4afa8c99e7c1 skills/agent-first-cli/assets/samples/gitignorer (heads/main)
+exit=0
+--- 12. git status --porcelain --untracked-files=normal ---
+?? .gsd/event-log.jsonl
+?? .gsd/metrics.json
+?? .gsd/state-manifest.json
+exit=0
+--- 13. .gitmodules has exactly one submodule block (count [submodule] lines) ---
+1
+--- 14. .gitmodules fields ---
+--- 15. submodule mount has no .git file/dir leak that's not a gitlink ---
+total 8
+drwxr-xr-x   4 jason  staff  128  6 Jun 16:23 .
+drwxr-xr-x   3 jason  staff   96  6 Jun 16:23 ..
+-rw-r--r--   1 jason  staff   91  6 Jun 16:23 .gitkeep
+drwxr-xr-x  16 jason  staff  512  6 Jun 16:24 gitignorer
+--- 16. HEAD commit does not touch .gsd/ ---
+21
+--- 17. last 3 commits on this branch ---
+b4fda4d feat: Verified S01 layout end-to-end: all 9 assertions pass, .gitmodu...
+5d8e6c6 refactor(agent-first-cli): merge gsd-new-cli-project + agent-dx-cli-eval, wire gitignorer submodule
+6995331 feat: Created skills/agent-first-cli/ placeholder skeleton (reference...
+--- 18. references/ contains only .gitkeep ---
+.gitkeep
+--- 19. skills/ top-level (should include agent-first-cli, timesheet; not the two removed) ---
+agent-first-cli
+timesheet

@@ -1,0 +1,43 @@
+=== Git log for the three S02 files ===
+2932053 feat: Ran S02 verification battery (9 assertion groups pass) and conf...
+1dc65f4 test: Authored skills/agent-first-cli/AGENTS.md: 33-line enforcement...
+1570704 feat: Authored skills/agent-first-cli/SKILL.md: 45-line sub-command r...
+
+=== Most recent commit details ===
+commit 2932053d34ab308e7b5ddcf6e5c00cc87bd674eb
+Author: Jason Pickens <jasonpickensnz@gmail.com>
+Date:   Sat Jun 6 16:57:14 2026 +1200
+
+    feat: Ran S02 verification battery (9 assertion groups pass) and conf...
+    
+    - skills/agent-first-cli/SKILL.md
+    - skills/agent-first-cli/AGENTS.md
+    - skills/agent-first-cli/CLAUDE.md
+    
+    GSD context:
+    - Milestone: M001 - Agent-First CLI Skill
+    - Slice: S02 - SKILL.md + AGENTS.md + CLAUDE.md + sub-command routing
+    - Task: T04 - Ran S02 verification battery (9 assertion groups pass) and confirmed all three files committed: SKILL.md, AGENTS.md, CLAUDE.md symlink.
+    
+    GSD-Task: S02/T04
+
+ skills/agent-first-cli/CLAUDE.md | 1 +
+ 1 file changed, 1 insertion(+)
+
+=== Working tree clean? ===
+
+=== All task summaries present ===
+total 112
+drwxr-xr-x  13 jason  staff   416  6 Jun 16:57 .
+drwxr-xr-x   5 jason  staff   160  6 Jun 16:57 ..
+-rw-r--r--   1 jason  staff  3462  6 Jun 16:37 T01-PLAN.md
+-rw-r--r--   1 jason  staff  5826  6 Jun 16:57 T01-SUMMARY.md
+-rw-r--r--   1 jason  staff   314  6 Jun 16:39 T01-VERIFY.json
+-rw-r--r--   1 jason  staff  2813  6 Jun 16:37 T02-PLAN.md
+-rw-r--r--   1 jason  staff  4871  6 Jun 16:57 T02-SUMMARY.md
+-rw-r--r--   1 jason  staff   315  6 Jun 16:40 T02-VERIFY.json
+-rw-r--r--   1 jason  staff  1542  6 Jun 16:37 T03-PLAN.md
+-rw-r--r--   1 jason  staff  2291  6 Jun 16:57 T03-SUMMARY.md
+-rw-r--r--   1 jason  staff  3266  6 Jun 16:37 T04-PLAN.md
+-rw-r--r--   1 jason  staff  4221  6 Jun 16:57 T04-SUMMARY.md
+-rw-r--r--   1 jason  staff   330  6 Jun 16:57 T04-VERIFY.json

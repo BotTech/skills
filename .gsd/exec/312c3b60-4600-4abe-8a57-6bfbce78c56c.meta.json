@@ -1,0 +1,18 @@
+{
+  "id": "312c3b60-4600-4abe-8a57-6bfbce78c56c",
+  "runtime": "bash",
+  "purpose": "Final S02 slice verification battery — all must-have items",
+  "script_chars": 3884,
+  "started_at": "2026-06-06T04:58:17.627Z",
+  "finished_at": "2026-06-06T04:58:17.757Z",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "duration_ms": 130,
+  "stdout_bytes": 1694,
+  "stderr_bytes": 0,
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "stdout_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/312c3b60-4600-4abe-8a57-6bfbce78c56c.stdout",
+  "stderr_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/312c3b60-4600-4abe-8a57-6bfbce78c56c.stderr"
+}

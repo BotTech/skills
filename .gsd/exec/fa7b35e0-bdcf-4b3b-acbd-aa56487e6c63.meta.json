@@ -1,0 +1,18 @@
+{
+  "id": "fa7b35e0-bdcf-4b3b-acbd-aa56487e6c63",
+  "runtime": "bash",
+  "purpose": "Inspect which .gsd paths appear in each S01 commit; verify R011 boundary was respected by the slice itself",
+  "script_chars": 652,
+  "started_at": "2026-06-06T04:26:25.741Z",
+  "finished_at": "2026-06-06T04:26:25.807Z",
+  "exit_code": 0,
+  "signal": null,
+  "timed_out": false,
+  "duration_ms": 66,
+  "stdout_bytes": 3268,
+  "stderr_bytes": 0,
+  "stdout_truncated": false,
+  "stderr_truncated": false,
+  "stdout_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/fa7b35e0-bdcf-4b3b-acbd-aa56487e6c63.stdout",
+  "stderr_path": "/Users/jason/src/bottech/skills/.gsd/worktrees/M001/.gsd/exec/fa7b35e0-bdcf-4b3b-acbd-aa56487e6c63.stderr"
+}

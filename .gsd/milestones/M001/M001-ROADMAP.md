@@ -13,10 +13,10 @@
 
 ## Slices
 
-- [ ] **S01: Restructure: rename, merge, submodule wiring** `risk:medium` `depends:[]`
+- [x] **S01: Restructure: rename, merge, submodule wiring** `risk:medium` `depends:[]`
   > After this: Repo has skills/agent-first-cli/ with empty placeholder files; skills/gsd-new-cli-project/ and skills/agent-dx-cli-eval/ removed; .gitmodules configured for assets/samples/gitignorer pointing to git@github.com:BotTech/gitignore.git branch main; git submodule status clean; git clone --recurse-submodules produces populated dir.
 
-- [ ] **S02: SKILL.md + AGENTS.md + CLAUDE.md + sub-command routing** `risk:medium` `depends:[S01]`
+- [x] **S02: SKILL.md + AGENTS.md + CLAUDE.md + sub-command routing** `risk:medium` `depends:[S01]`
   > After this: agent-first-cli/SKILL.md exists, under 100 lines, advertises 7 sub-commands; AGENTS.md declares strict bidirectional axis<->R### coverage rule; CLAUDE.md is a working symlink to AGENTS.md; each sub-command name appears in SKILL.md with the reference file it loads.
 
 - [ ] **S03: Reference content: stack, features, architecture, pitfalls, requirements** `risk:medium` `depends:[S02]`

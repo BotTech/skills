@@ -1,0 +1,74 @@
+--- HEAD commit (b4fda4d, T03 'verified') file list ---
+.bg-shell/manifest.json
+.gsd/DECISIONS.md
+.gsd/KNOWLEDGE.md
+.gsd/PROJECT.md
+.gsd/QUEUE.md
+.gsd/REQUIREMENTS.md
+.gsd/ROADMAP.md
+.gsd/milestones/M001/M001-CONTEXT.md
+.gsd/milestones/M001/M001-META.json
+.gsd/milestones/M001/M001-ROADMAP.md
+.gsd/milestones/M001/anchors/research-slice.json
+.gsd/milestones/M001/slices/S01/S01-PLAN.md
+.gsd/milestones/M001/slices/S01/S01-RESEARCH.md
+.gsd/milestones/M001/slices/S01/tasks/T01-PLAN.md
+.gsd/milestones/M001/slices/S01/tasks/T01-SUMMARY.md
+.gsd/milestones/M001/slices/S01/tasks/T01-VERIFY.json
+.gsd/milestones/M001/slices/S01/tasks/T02-PLAN.md
+.gsd/milestones/M001/slices/S01/tasks/T02-SUMMARY.md
+.gsd/milestones/M001/slices/S01/tasks/T02-VERIFY.json
+.gsd/milestones/M001/slices/S01/tasks/T03-PLAN.md
+.gsd/milestones/M001/slices/S01/tasks/T03-SUMMARY.md
+.gsd/milestones/M001/slices/S01/tasks/T03-VERIFY.json
+
+--- HEAD-1 commit (5d8e6c6, T02 'restructure') file list ---
+.gitmodules
+skills/agent-dx-cli-eval/SKILL.md
+skills/agent-dx-cli-eval/references/agent-dx-cli-scale.md
+skills/agent-first-cli/assets/samples/gitignorer
+skills/gsd-new-cli-project/SKILL.md
+skills/gsd-new-cli-project/references/rewrite-your-cli-for-ai-agents.md
+
+--- HEAD-2 commit (6995331, T01 'placeholder') file list ---
+skills/agent-first-cli/assets/samples/.gitkeep
+skills/agent-first-cli/references/.gitkeep
+
+--- Are the .gsd paths added in the T03 'verified' commit? Or were they already in HEAD~1? ---
+.gsd/DECISIONS.md
+.gsd/KNOWLEDGE.md
+.gsd/PROJECT.md
+.gsd/QUEUE.md
+.gsd/REQUIREMENTS.md
+
+--- diff stat for HEAD restricted to .gsd/ ---
+commit b4fda4db537e27b367d11dbfad6710cb898a933f
+Author: Jason Pickens <jasonpickensnz@gmail.com>
+Date:   Sat Jun 6 16:25:59 2026 +1200
+
+    feat: Verified S01 layout end-to-end: all 9 assertions pass, .gitmodu...
+    
+    GSD context:
+    - Milestone: M001 - Agent-First CLI Skill
+    - Slice: S01 - Restructure: rename, merge, submodule wiring
+    - Task: T03 - Verified S01 layout end-to-end: all 9 assertions pass, .gitmodules committed, submodule initialized at space prefix, working tree clean, no .gsd/ leak to HEAD
+    
+    GSD-Task: S01/T03
+
+ .gsd/DECISIONS.md                                  |  16 ++
+ .gsd/KNOWLEDGE.md                                  |  18 ++
+ .gsd/PROJECT.md                                    |  39 ++++
+ .gsd/QUEUE.md                                      |   3 +
+ .gsd/REQUIREMENTS.md                               | 226 ++++++++++++++++++++
+ .gsd/ROADMAP.md                                    |   5 +
+ .gsd/milestones/M001/M001-CONTEXT.md               | 229 +++++++++++++++++++++
+ .gsd/milestones/M001/M001-META.json                |   3 +
+ .gsd/milestones/M001/M001-ROADMAP.md               |  36 ++++
+ .gsd/milestones/M001/anchors/research-slice.json   |   9 +
+ .gsd/milestones/M001/slices/S01/S01-PLAN.md        |  56 +++++
+ .gsd/milestones/M001/slices/S01/S01-RESEARCH.md    | 221 ++++++++++++++++++++
+ .gsd/milestones/M001/slices/S01/tasks/T01-PLAN.md  |  39 ++++
+ .../M001/slices/S01/tasks/T01-SUMMARY.md           |  45 ++++
+ .../M001/slices/S01/tasks/T01-VERIFY.json          |  16 ++
+ .gsd/milestones/M001/slices/S01/tasks/T02-PLAN.md  |  50 +++++
+ .../M001/slices/S01/tasks/T02-SUMMARY.md           |  76 +++++++

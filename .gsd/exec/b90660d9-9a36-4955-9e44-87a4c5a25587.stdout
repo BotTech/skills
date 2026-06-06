@@ -1,0 +1,86 @@
+=== FILE EXISTENCE ===
+OK  skills/agent-first-cli/SKILL.md
+OK  skills/agent-first-cli/AGENTS.md
+OK  skills/agent-first-cli/CLAUDE.md
+
+=== SYMLINK CHECK ===
+CLAUDE.md is a symlink
+readlink: AGENTS.md
+resolves to: /Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/AGENTS.md
+AGENTS.md realpath: /Users/jason/.gsd/projects/0809305c93fd/worktrees/M001/skills/agent-first-cli/AGENTS.md
+OK symlink resolves to AGENTS.md
+OK link target is relative: AGENTS.md
+
+=== LINE COUNTS ===
+SKILL.md:       45 lines (limit 100)
+AGENTS.md:       33 lines (limit 50)
+
+=== SUB-COMMAND COVERAGE IN SKILL.md ===
+OK  stack (found as 'agent-first-cli stack')
+OK  features (found as 'agent-first-cli features')
+OK  architecture (found as 'agent-first-cli architecture')
+OK  pitfalls (found as 'agent-first-cli pitfalls')
+OK  requirements (found as 'agent-first-cli requirements')
+OK  validate (found as 'agent-first-cli validate')
+OK  verify (found as 'agent-first-cli verify')
+
+=== ROUTING TABLE — each sub maps to references/ file ===
+OK  stack -> - **One sub-command loads one reference file.** Never load more than one reference per invocation; the user asks for `stack`, they get `references/stack.md`, nothing else.
+OK  features -> | `agent-first-cli features` | `references/features.md` | Research/planning — scoping the agent-first feature surface (--output json, --dry-run, etc.) |
+OK  architecture -> | `agent-first-cli architecture` | `references/architecture.md` | Research/planning — designing module boundaries (commands, formatters, parsers, schemas) |
+OK  pitfalls -> | `agent-first-cli pitfalls` | `references/pitfalls.md` | Research/planning — assessing risks (streaming, pipes, exit-code drift, idempotency traps) |
+OK  requirements -> | `agent-first-cli requirements` | `references/requirements.md` | Planning — seeding R###s in the project's REQUIREMENTS.md with axis tags |
+OK  validate -> | `agent-first-cli validate` | `references/validate.md` | Plan-mode — before execution, check axis coverage against PROJECT/REQUIREMENTS/ROADMAP/CONTEXT/PLAN |
+OK  verify -> | `agent-first-cli verify` | `references/verify.md` | Implementation-mode — after execution, check the built CLI against the 8-axis rubric |
+
+=== FORBIDDEN TOKENS (R011/R012) ===
+-- .gsd/ writes --
+skills/agent-first-cli/SKILL.md:16:- **No `.gsd/` writes from this skill.** The skill reads GSD artifacts (during `validate`) and reads the CLI implementation (during `verify`); it never authors or mutates anything in the user's `.gsd/`. GSD is the sole writer.
+skills/agent-first-cli/SKILL.md:41:- No file under `.gsd/` in the user's project was written or mutated by this skill.
+-- /gsd-* slash commands --
+none
+-- gsd_* tool calls --
+none
+-- gsd.db refs --
+none
+-- gsd-pi refs --
+none
+
+=== YAML FRONTMATTER (SKILL.md) ===
+---
+name: agent-first-cli
+description: "Design, validate, and verify agent-first command-line interfaces. Provides research, planning, and lifecycle hooks for starting a new CLI project or refactoring an existing CLI to score well on the 8 agent-first axes (discoverability, invocation, I/O, state, errors, exit codes, idempotency, examples). Use when the user says 'agent-first CLI', 'new CLI project', 'CLI for agents', 'refactor this CLI for LLM use', 'score my CLI', 'validate my CLI plan', or 'verify my CLI build'."
+argument-hint: "[stack|features|architecture|pitfalls|requirements|validate|verify]"
+metadata:
+  version: 0.1.0
+---
+
+# agent-first-cli
+
+A content-and-checks skill for building CLIs that LLM agents can drive reliably. Routes the user to exactly one reference file per invocation (progressive disclosure). Ships no runtime code; provides reference material for research/planning and read-only checks for plan validation and build verification.
+
+<essential_principles>
+
+- **One sub-command loads one reference file.** Never load more than one reference per invocation; the user asks for `stack`, they get `references/stack.md`, nothing else.
+- **No `.gsd/` writes from this skill.** The skill reads GSD artifacts (during `validate`) and reads the CLI implementation (during `verify`); it never authors or mutates anything in the user's `.gsd/`. GSD is the sole writer.
+- **Harness-agnostic.** This skill contains no slash commands, no tool calls, no database reads. It works in any agent harness that loads `SKILL.md` files.
+- **Strict axis ↔ R### coverage.** Every one of the 8 axes must trace to an Active R### (or be marked out-of-scope with reason); every R### this skill suggests must trace to an axis (or be justified). See `AGENTS.md`.
+
+</essential_principles>
+
+=== AGENTS.md DOES NOT ENUMERATE AXES ===
+Searching for 'axis 1', 'axis 2', ... 'axis 8' enumeration patterns
+no axis enumeration found
+
+=== AGENTS.md STRICT RULE KEY PHRASES ===
+  'out-of-scope': 3 occurrences
+  'orphan': 3 occurrences
+  'is an error': 2 occurrences
+  'bidirectional': 1 occurrences
+
+=== CLAUDE.md CONTENT (via symlink) ===
+# AGENTS.md — agent-first-cli
+
+This is the skill's enforcement contract. It states one rule and how to read it in both directions. Mechanics live in `references/validate.md` and `references/verify.md`; the axis list lives in `references/eval.md`.
+
+## Strict Bidirectional Coverage Rule
