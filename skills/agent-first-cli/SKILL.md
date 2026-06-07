@@ -10,6 +10,18 @@ metadata:
 
 A content-and-checks skill for building CLIs that LLM agents can drive reliably. Routes the user to exactly one reference file per invocation (progressive disclosure). Ships no runtime code; provides reference material for research/planning and read-only checks for plan validation and build verification.
 
+## Initialization
+
+On every invocation, before routing to the requested sub-command, the agent performs an idempotent setup check:
+
+1. **Detect the harness.** If `.gsd/PREFERENCES.md` exists in the project root or `~/.gsd/PREFERENCES.md` exists in the user's home directory, treat this as a GSD project; otherwise treat it as a generic harness.
+2. **Check the marker.** Look for the marker comment block `<!-- agent-first-cli begin --> ... <!-- agent-first-cli end -->` in the harness-appropriate target file (`AGENTS.md` for a generic harness; both `AGENTS.md` and the GSD preferences file for a GSD project). The exact snippets to write live in `references/setup.md`.
+3. **If absent, write.** Load `references/setup.md` and insert the appropriate snippet (Universal only, or Universal + GSD) into the target file(s). Do not write anywhere else; in particular, do not write under `.gsd/` (R011).
+4. **If present, skip.** The skill is already initialized in this project. Proceed directly to the requested sub-command without re-writing.
+5. **Force re-init.** `agent-first-cli setup --force` bypasses the skip check: replace the existing marker block(s) with the snippets from `references/setup.md`. Without `--force`, prior init is preserved.
+
+The setup check is the only step that ever writes outside its own reference files; all other sub-commands remain read-only.
+
 <essential_principles>
 
 - **One sub-command loads one reference file.** Never load more than one reference per invocation; the user asks for `stack`, they get `references/stack.md`, nothing else.
@@ -30,6 +42,7 @@ A content-and-checks skill for building CLIs that LLM agents can drive reliably.
 | `agent-first-cli requirements` | `references/requirements.md` | Planning — seeding R###s in the project's REQUIREMENTS.md with axis tags |
 | `agent-first-cli validate` | `references/validate.md` | Plan-mode — before execution, check axis coverage against PROJECT/REQUIREMENTS/ROADMAP/CONTEXT/PLAN |
 | `agent-first-cli verify` | `references/verify.md` | Implementation-mode — after execution, check the built CLI against the 8-axis rubric |
+| `agent-first-cli setup` | `references/setup.md` | Inspect or manually apply the integration cues for this skill (universal + GSD-specific) |
 
 `references/eval.md` exists as the shared 8-axis rubric spine; it is consumed by `validate` and `verify` and is **not** a sub-command.
 
