@@ -51,6 +51,16 @@ The table below maps each of the 8 agent-first axes to concrete files in `assets
 
 Axis numbering follows `references/eval.md`. Citations use the `Axis: N` form in structured tables and `Axis N` in prose, per the eval.md citation convention. Deep-link anchors (`#axis-N`) and `references/<file>.md#section` suffixes are intentionally avoided.
 
+## Re-invoke at later phases
+
+On first load in a project, this skill self-installs phase-specific re-invocation cues into the host project so that subsequent lifecycle phases (Plan, Complete, etc.) automatically route back to the right sub-commands. The cues live inside a stable marker block (see `references/setup.md` for the exact wording and the universal-vs-GSD targets). Subsequent loads detect the marker and skip init silently. To force re-init — for example after upgrading the skill or rotating the cue wording — run:
+
+```sh
+agent-first-cli setup --force
+```
+
+This replaces the existing marker block with the current snippets from `references/setup.md`.
+
 ## What this skill does not do
 
 - It does not write to the host project's GSD state directory. `validate` reads GSD artifacts; `verify` reads the built CLI. GSD is the sole writer of its own state.
