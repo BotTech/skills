@@ -51,20 +51,26 @@ The table below maps each of the 8 agent-first axes to concrete files in `assets
 
 Axis numbering follows `references/eval.md`. Citations use the `Axis: N` form in structured tables and `Axis N` in prose, per the eval.md citation convention. Deep-link anchors (`#axis-N`) and `references/<file>.md#section` suffixes are intentionally avoided.
 
-## Re-invoke at later phases
+## Setup (opt-in, branching model)
 
-On first load in a project, this skill self-installs phase-specific re-invocation cues into the host project so that subsequent lifecycle phases (Plan, Complete, etc.) automatically route back to the right sub-commands. The cues live inside a stable marker block (see `references/setup.md` for the exact wording and the universal-vs-GSD targets). Subsequent loads detect the marker and skip init silently. To force re-init — for example after upgrading the skill or rotating the cue wording — run:
+Loading this skill writes nothing. The only path that writes is the explicit `agent-first-cli setup` sub-command. Setup writes re-invocation cues into **exactly one** target file, determined by a single harness probe. The branches are mutually exclusive — pick one, never both.
+
+- **GSD branch** (`.gsd/PREFERENCES.md` exists at the project root OR `~/.gsd/PREFERENCES.md` exists): cues go into the discovered `.gsd/PREFERENCES.md` only. `AGENTS.md` is **not** touched.
+- **Universal branch** (neither GSD preferences file exists): cues go into `AGENTS.md` at the project root only. `.gsd/` is **not** touched at all.
 
 ```sh
-agent-first-cli setup --force
+agent-first-cli setup           # apply cues to the single target chosen by the branch
+agent-first-cli setup --force   # replace the existing marker block on the chosen target
 ```
 
-This replaces the existing marker block with the current snippets from `references/setup.md`.
+See `references/setup.md` for the full branching algorithm, the snippets, and the regression history.
 
 ## What this skill does not do
 
-- It does not write to the host project's GSD state directory. `validate` reads GSD artifacts; `verify` reads the built CLI. GSD is the sole writer of its own state.
-- It does not invoke harness-specific slash commands or tools. It is harness-agnostic.
+- **It does not auto-initialize.** Loading the skill writes nothing. Setup is opt-in via the explicit `agent-first-cli setup` sub-command, and it writes to exactly one target determined by the branching model.
+- **It does not write to both targets.** Setup is mutually exclusive: GSD projects get cues in `.gsd/PREFERENCES.md` only; non-GSD projects get cues in `AGENTS.md` only. Never both. If you feel an urge to write both, stop — you are about to violate the branching rule.
+- **Its non-setup sub-commands are read-only.** `stack`, `features`, `architecture`, `pitfalls`, `requirements`, `validate`, `verify` write nothing, anywhere, ever. `validate` reads GSD artifacts; `verify` reads the built CLI; neither writes.
+- It does not invoke harness-specific slash commands or tools outside setup's harness-detection probe. It is harness-agnostic.
 - It does not ship runtime code. The gitignorer sample is an *asset* (a reference CLI to verify against), not a dependency of the skill itself.
 
-For the strict coverage rule (every axis → R### or `out-of-scope`; every R### → axis or justification), see `AGENTS.md`. For the canonical axis list, see `references/eval.md`. For sub-command semantics and progressive-disclosure routing, see `SKILL.md`.
+For the strict coverage rule (every axis → R### or `out-of-scope`; every R### → axis or justification), see `AGENTS.md`. For the canonical axis list, see `references/eval.md`. For sub-command semantics and progressive-disclosure routing, see `SKILL.md`. For the setup branching model, see `references/setup.md`.

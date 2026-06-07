@@ -1,15 +1,21 @@
 # AGENTS.md — agent-first-cli
 
-This is the skill's enforcement contract. It states one rule and how to read it in both directions. Mechanics live in `references/validate.md` and `references/verify.md`; the axis list lives in `references/eval.md`.
+This is the skill's enforcement contract. Mechanics live in `references/validate.md` and `references/verify.md`; the axis list lives in `references/eval.md`; the setup branching model lives in `references/setup.md`.
 
-## Self-Initialization Contract
+## Setup Branching Contract
 
-This skill is self-initializing. On first load in a project, the skill instructs the reading agent to write a small set of re-invocation cues into the host project so subsequent calls route correctly without re-running setup:
+`setup` writes re-invocation cues into **exactly one** target file per invocation. The two branches are mutually exclusive:
 
-- **Non-GSD harnesses:** cues are written into `AGENTS.md` at the project root inside a `<!-- agent-first-cli begin --> ... <!-- agent-first-cli end -->` marker block. `AGENTS.md` is created if it does not exist.
-- **GSD harnesses** (`.gsd/PREFERENCES.md` or `~/.gsd/PREFERENCES.md` present): cues go into `.gsd/PREFERENCES.md` inside the same marker block. `AGENTS.md` is **not** written in this case and stays untouched.
+- **GSD branch** (`.gsd/PREFERENCES.md` exists at the project root OR `~/.gsd/PREFERENCES.md` exists): write the GSD snippet into the discovered `.gsd/PREFERENCES.md`. Do **not** touch `AGENTS.md`.
+- **Universal branch** (neither GSD preferences file exists): write the Universal snippet into `AGENTS.md` at the project root. Do **not** touch `.gsd/` at all.
 
-Re-runs without `--force` are idempotent: an existing marker block causes setup to skip silently. `agent-first-cli setup --force` replaces the existing marker block in place. The canonical cue wording and procedure live in `references/setup.md`; that file is the source of truth — this section only documents the contract.
+If you feel an urge to write both `AGENTS.md` AND `.gsd/PREFERENCES.md`, stop — you are about to violate the branching rule. The branches are additive in **no** case. Setup also runs only when the user explicitly invokes it; loading the skill does not trigger setup.
+
+The canonical snippets, the probe order, the idempotency algorithm, and the rationale for each rule live in `references/setup.md`; that file is the source of truth — this section only documents the contract.
+
+### Regression guard
+
+Previous versions of this skill described setup as "Universal only, or Universal + GSD" — implying both files get written in GSD projects — in the same breath as "do not write under `.gsd/`" — forbidding the GSD branch entirely. Both phrasings were bugs. The first caused agents to think they had to add `AGENTS.md` to GSD projects that did not want one; the second contradicted the first and confused agents into thinking they had to write both. The branching model above makes the mutual exclusion explicit. Do not reintroduce either phrasing.
 
 ## Strict Bidirectional Coverage Rule
 
@@ -40,3 +46,4 @@ Read coverage from requirements upward. Every R### that this skill suggests must
 - Starter R###s with `Axis: N` tags: `references/requirements.md`.
 - How to enforce in plan-mode: `references/validate.md`.
 - How to enforce against a built CLI: `references/verify.md`.
+- Setup contract (branching model, snippets, idempotency): `references/setup.md`.
