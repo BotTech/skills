@@ -11,7 +11,11 @@ metadata:
 A content-and-checks skill for building CLIs that LLM agents can drive reliably. Routes to exactly one reference file per invocation (progressive disclosure). Ships no runtime code.
 
 <setup skip-iff="${agent-first-cli:setup-complete}">
-  Follow [setup.md](references/setup.md).
+  BEFORE any other sub-command, follow [setup.md](references/setup.md).
+  If `${agent-first-cli:setup-complete} = true` is present in the chosen
+  target file, skip. Otherwise run setup to completion before doing
+  anything else. Do not prompt the user; do not list sub-commands; do
+  not return control until setup is done or correctly skipped.
 </setup>
 
 <routing>
@@ -25,7 +29,7 @@ A content-and-checks skill for building CLIs that LLM agents can drive reliably.
 | `agent-first-cli requirements` | `references/requirements.md` | Seeding R###s in REQUIREMENTS.md with axis tags |
 | `agent-first-cli validate` | `references/validate.md` | Plan-mode — check axis coverage before execution |
 | `agent-first-cli verify` | `references/verify.md` | Implementation-mode — check built CLI against the 8-axis rubric |
-| `agent-first-cli setup` | `references/setup.md` | Apply re-invocation cues. Explicit user request only. |
+| `agent-first-cli setup` | `references/setup.md` | Apply re-invocation cues. Runs automatically on the first invocation without `${agent-first-cli:setup-complete}`; `--force` re-runs. |
 
 `references/eval.md` is the shared 8-axis rubric spine; consumed by `validate` and `verify`, not a sub-command.
 
@@ -40,8 +44,8 @@ A content-and-checks skill for building CLIs that LLM agents can drive reliably.
 
 <success_criteria>
 
-- The agent loaded exactly one reference file matching the sub-command.
-- The agent did not run setup as a side-effect of loading the skill.
+- On every invocation, the agent ran setup to completion before any other sub-command, OR correctly skipped setup because `${agent-first-cli:setup-complete} = true` was already present in the chosen target.
+- The agent did not prompt the user to choose a sub-command before setup completed (or was skipped).
 - If `setup` ran, the agent wrote to exactly one target — the one setup.md selected for this harness — and did not touch the other.
 - Each axis from `references/eval.md` traces to an Active R### or is marked out-of-scope with a reason.
 

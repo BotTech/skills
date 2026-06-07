@@ -9,7 +9,7 @@ This is the skill's enforcement contract. Mechanics live in `references/validate
 - **GSD branch** (`.gsd/PREFERENCES.md` exists at the project root OR `~/.gsd/PREFERENCES.md` exists): write the GSD snippet into the discovered `.gsd/PREFERENCES.md`. Do **not** touch `AGENTS.md`.
 - **Universal branch** (neither GSD preferences file exists): write the Universal snippet into `AGENTS.md` at the project root. Do **not** touch `.gsd/` at all.
 
-If you feel an urge to write both `AGENTS.md` AND `.gsd/PREFERENCES.md`, stop — you are about to violate the branching rule. The branches are additive in **no** case. Setup also runs only when the user explicitly invokes it; loading the skill does not trigger setup.
+If you feel an urge to write both `AGENTS.md` AND `.gsd/PREFERENCES.md`, stop — you are about to violate the branching rule. The branches are additive in **no** case.
 
 The canonical snippets, the probe order, the idempotency algorithm, and the rationale for each rule live in `references/setup.md`; that file is the source of truth — this section only documents the contract.
 
