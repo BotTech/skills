@@ -1,58 +1,48 @@
 ---
 name: agent-first-cli
 description: "Design, validate, and verify agent-first command-line interfaces. Provides research, planning, and lifecycle hooks for starting a new CLI project or refactoring an existing CLI to score well on the 8 agent-first axes (discoverability, invocation, I/O, state, errors, exit codes, idempotency, examples). Use when the user says 'agent-first CLI', 'new CLI project', 'CLI for agents', 'refactor this CLI for LLM use', 'score my CLI', 'validate my CLI plan', or 'verify my CLI build'."
-argument-hint: "[stack|features|architecture|pitfalls|requirements|validate|verify]"
+argument-hint: "[stack|features|architecture|pitfalls|requirements|validate|verify|setup]"
 metadata:
-  version: 0.1.0
+  version: 0.3.0
 ---
 
 # agent-first-cli
 
-A content-and-checks skill for building CLIs that LLM agents can drive reliably. Routes the user to exactly one reference file per invocation (progressive disclosure). Ships no runtime code; provides reference material for research/planning and read-only checks for plan validation and build verification.
+A content-and-checks skill for building CLIs that LLM agents can drive reliably. Routes to exactly one reference file per invocation (progressive disclosure). Ships no runtime code.
 
-## Initialization
-
-On every invocation, before routing to the requested sub-command, the agent performs an idempotent setup check:
-
-1. **Detect the harness.** If `.gsd/PREFERENCES.md` exists in the project root or `~/.gsd/PREFERENCES.md` exists in the user's home directory, treat this as a GSD project; otherwise treat it as a generic harness.
-2. **Check the marker.** Look for the marker comment block `<!-- agent-first-cli begin --> ... <!-- agent-first-cli end -->` in the harness-appropriate target file (`AGENTS.md` for a generic harness; both `AGENTS.md` and the GSD preferences file for a GSD project). The exact snippets to write live in `references/setup.md`.
-3. **If absent, write.** Load `references/setup.md` and insert the appropriate snippet (Universal only, or Universal + GSD) into the target file(s). Do not write anywhere else; in particular, do not write under `.gsd/` (R011).
-4. **If present, skip.** The skill is already initialized in this project. Proceed directly to the requested sub-command without re-writing.
-5. **Force re-init.** `agent-first-cli setup --force` bypasses the skip check: replace the existing marker block(s) with the snippets from `references/setup.md`. Without `--force`, prior init is preserved.
-
-The setup check is the only step that ever writes outside its own reference files; all other sub-commands remain read-only.
-
-<essential_principles>
-
-- **One sub-command loads one reference file.** Never load more than one reference per invocation; the user asks for `stack`, they get `references/stack.md`, nothing else.
-- **No `.gsd/` writes from this skill.** The skill reads GSD artifacts (during `validate`) and reads the CLI implementation (during `verify`); it never authors or mutates anything in the user's `.gsd/`. GSD is the sole writer.
-- **Harness-agnostic.** This skill contains no slash commands, no tool calls, no database reads. It works in any agent harness that loads `SKILL.md` files.
-- **Strict axis ↔ R### coverage.** Every one of the 8 axes must trace to an Active R### (or be marked out-of-scope with reason); every R### this skill suggests must trace to an axis (or be justified). See `AGENTS.md`.
-
-</essential_principles>
+<setup skip-iff="${agent-first-cli:setup-complete}">
+  Follow [setup.md](references/setup.md).
+</setup>
 
 <routing>
 
-| Sub-command | What it loads | When to invoke |
+| Sub-command | Loads | When |
 |---|---|---|
-| `agent-first-cli stack` | `references/stack.md` | Research/planning — choosing the tech stack (language, framework, schema tools) |
-| `agent-first-cli features` | `references/features.md` | Research/planning — scoping the agent-first feature surface (--output json, --dry-run, etc.) |
-| `agent-first-cli architecture` | `references/architecture.md` | Research/planning — designing module boundaries (commands, formatters, parsers, schemas) |
-| `agent-first-cli pitfalls` | `references/pitfalls.md` | Research/planning — assessing risks (streaming, pipes, exit-code drift, idempotency traps) |
-| `agent-first-cli requirements` | `references/requirements.md` | Planning — seeding R###s in the project's REQUIREMENTS.md with axis tags |
-| `agent-first-cli validate` | `references/validate.md` | Plan-mode — before execution, check axis coverage against PROJECT/REQUIREMENTS/ROADMAP/CONTEXT/PLAN |
-| `agent-first-cli verify` | `references/verify.md` | Implementation-mode — after execution, check the built CLI against the 8-axis rubric |
-| `agent-first-cli setup` | `references/setup.md` | Inspect or manually apply the integration cues for this skill (universal + GSD-specific) |
+| `agent-first-cli stack` | `references/stack.md` | Choosing the tech stack |
+| `agent-first-cli features` | `references/features.md` | Scoping the agent-first feature surface |
+| `agent-first-cli architecture` | `references/architecture.md` | Designing module boundaries |
+| `agent-first-cli pitfalls` | `references/pitfalls.md` | Assessing risks |
+| `agent-first-cli requirements` | `references/requirements.md` | Seeding R###s in REQUIREMENTS.md with axis tags |
+| `agent-first-cli validate` | `references/validate.md` | Plan-mode — check axis coverage before execution |
+| `agent-first-cli verify` | `references/verify.md` | Implementation-mode — check built CLI against the 8-axis rubric |
+| `agent-first-cli setup` | `references/setup.md` | Apply re-invocation cues. Explicit user request only. |
 
-`references/eval.md` exists as the shared 8-axis rubric spine; it is consumed by `validate` and `verify` and is **not** a sub-command.
+`references/eval.md` is the shared 8-axis rubric spine; consumed by `validate` and `verify`, not a sub-command.
 
 </routing>
 
+<essential_principles>
+
+- **One sub-command loads one reference file.**
+- **Strict axis ↔ R### coverage.** Every axis → an Active R### or `out-of-scope`; every R### this skill suggests → an axis or a justification. See `AGENTS.md`.
+
+</essential_principles>
+
 <success_criteria>
 
-- The agent loaded **exactly one** reference file matching the sub-command name (or none, if the user only wanted the index).
-- No file under `.gsd/` in the user's project was written or mutated by this skill.
-- The agent invoked no harness-specific slash commands, harness-specific tool calls, or direct database reads; the skill stayed harness-agnostic.
-- Each axis from `references/eval.md` is either traced to an Active R### or explicitly marked out-of-scope with a reason.
+- The agent loaded exactly one reference file matching the sub-command.
+- The agent did not run setup as a side-effect of loading the skill.
+- If `setup` ran, the agent wrote to exactly one target — the one setup.md selected for this harness — and did not touch the other.
+- Each axis from `references/eval.md` traces to an Active R### or is marked out-of-scope with a reason.
 
 </success_criteria>

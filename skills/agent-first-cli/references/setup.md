@@ -1,60 +1,104 @@
-# Setup — Initialization Cues for This Skill
+# Setup — Re-Invocation Cues
 
-This is the initialization spec for the agent-first-cli skill. An agent (human or LLM) loads this file once, the first time the skill is invoked in a project, and writes a small set of integration cues into the host project so subsequent invocations route correctly without re-running setup. The cues are written inside a stable marker comment block so re-runs are idempotent. The procedure is harness-aware: it detects whether the host project is a GSD project (`.gsd/PREFERENCES.md` present locally or at `~/.gsd/PREFERENCES.md`) and writes GSD-specific cues in that case; otherwise it writes universal cues into `AGENTS.md`. The skill never invokes harness-specific slash commands or tool calls; it produces text the agent inserts via normal file editing.
+`setup` is the only sub-command that writes anything. It writes re-invocation cues into exactly one target file so future phases auto-route back to the right sub-commands. The skip-signal `${agent-first-cli:setup-complete} = true` lives inside the cues — once it's in the target file, setup is a no-op until `--force`.
 
-## Universal
+## How setup picks the target
 
-The universal cues are written to `AGENTS.md` at the project root. If `AGENTS.md` does not exist, create it. The cues go inside a marker block so re-runs can detect prior init:
+<detect_harness>
+  if exists("<project-root>/.gsd/PREFERENCES.md") OR exists("~/.gsd/PREFERENCES.md"):
+    ${harness} = "gsd"
+    ${target} = the .gsd/PREFERENCES.md that was found (project root preferred over home)
+  else:
+    ${harness} = "universal"
+    ${target} = "<project-root>/AGENTS.md"
+</detect_harness>
 
-```
-<!-- agent-first-cli begin -->
-When working on a CLI in this project, invoke the `agent-first-cli` skill at these points:
+The probe is a pure file-existence check. It does not parse file contents. Presence of either preferences file means the host has opted into GSD; absence means Universal.
 
-| Phase | What to run | Why |
-|---|---|---|
-| Research | `agent-first-cli stack`, then `features`, then `architecture`, then `pitfalls` | Load tech-stack, feature-surface, module-boundary, and risk guidance before designing |
-| Plan | `agent-first-cli requirements` | Seed R###s with axis tags in REQUIREMENTS.md |
-| Execute | (no invocation; the references are read-only) | Implementation proceeds without skill-side writes |
-| Complete | `agent-first-cli validate`, then `verify` | Check plan coverage, then built-CLI coverage against the 8-axis rubric |
+## What setup writes
 
-Each sub-command loads exactly one reference file. The skill never writes to `.gsd/`.
-<!-- agent-first-cli end -->
-```
+The branches are mutually exclusive. Pick one. Never both.
 
-After writing, the agent proceeds to whatever sub-command the user originally requested.
+### GSD branch
 
-## GSD
+Target: the discovered `.gsd/PREFERENCES.md`. Merge into the existing file — do **not** rewrite it, do **not** touch `AGENTS.md`.
 
-When the host project is a GSD project (`.gsd/PREFERENCES.md` or `~/.gsd/PREFERENCES.md` exists), also append the following block to `.gsd/PREFERENCES.md` (creating the file at the project root if it does not exist and the home file is the only one present is not required; prefer writing at the project root when present). The block sits inside the same marker pair so a future `setup --force` can find and replace it:
+<merge targets="always_use_skills, custom_instructions">
+  always_use_skills:
+    — append `agent-first-cli` if not already present
+
+  custom_instructions:
+    — append the block below if no existing list item contains `<agent-first-cli>`
+    — on `--force`, replace the existing `<agent-first-cli>...</agent-first-cli>` list item with the block below
+</merge>
+
+Snippet to merge into `custom_instructions` (one list item, YAML literal block scalar `|-`):
 
 ```yaml
-# <!-- agent-first-cli begin -->
-always_use_skills:
-  - agent-first-cli
-skill_rules:
-  - when: research-milestone
-    then: agent-first-cli stack
-  - when: plan-milestone
-    then:
-      - agent-first-cli features
-      - agent-first-cli architecture
-      - agent-first-cli pitfalls
-      - agent-first-cli requirements
-  - when: plan-slice
-    then: agent-first-cli requirements
-  - when: execute-task
-    then: null
-  - when: complete-slice
-    then:
-      - agent-first-cli validate
-      - agent-first-cli verify
-  - when: validate-milestone
-    then: agent-first-cli verify
-# <!-- agent-first-cli end -->
+  - |-
+    <agent-first-cli>
+    ${agent-first-cli:setup-complete} = true
+    Run these commands at the matching phase:
+      - `agent-first-cli stack` — at research-milestone: tech-stack guidance before designing
+      - `agent-first-cli features` — at plan-milestone: scope the agent-first feature surface
+      - `agent-first-cli architecture` — at plan-milestone: module boundaries
+      - `agent-first-cli pitfalls` — at plan-milestone: risks (streaming, pipes, exit codes)
+      - `agent-first-cli requirements` — at plan-milestone or plan-slice: seed R###s with axis tags
+      - `agent-first-cli validate` — at complete-slice: check axis coverage against the plan
+      - `agent-first-cli verify` — at complete-slice or validate-milestone: check built CLI against the 8-axis rubric
+    Each command loads one reference file from references/.
+    </agent-first-cli>
 ```
 
-The phase names (`research-milestone`, `plan-milestone`, `plan-slice`, `execute-task`, `complete-slice`, `validate-milestone`) match GSD's auto-dispatch phase names exactly so GSD can dispatch this skill automatically at each phase. `execute-task` carries `then: null` to make the no-invocation rule explicit and machine-readable.
+Phase names (`research-milestone`, `plan-milestone`, `plan-slice`, `complete-slice`, `validate-milestone`) match GSD's auto-dispatch phase names. `execute-task` is intentionally absent — the skill's references are read-only and add nothing during task execution.
+
+### Universal branch
+
+Target: `<project-root>/AGENTS.md` (create if absent). Do **not** touch `.gsd/` anywhere — not at the project root, not in the user's home directory.
+
+Append the block below. If `--force` and the block already exists, replace it.
+
+```markdown
+<agent-first-cli>
+${agent-first-cli:setup-complete} = true
+
+Run these commands when working on a CLI in this project:
+
+- `agent-first-cli stack` — at research: tech-stack guidance before designing
+- `agent-first-cli features` — at plan: scope the agent-first feature surface
+- `agent-first-cli architecture` — at plan: module boundaries
+- `agent-first-cli pitfalls` — at plan: risks (streaming, pipes, exit codes)
+- `agent-first-cli requirements` — at plan: seed R###s with axis tags in REQUIREMENTS.md
+- `agent-first-cli validate` — at complete: check axis coverage against plan artifacts
+- `agent-first-cli verify` — at complete or validate: check built CLI against the 8-axis rubric
+
+Each command loads one reference file from `references/`.
+</agent-first-cli>
+```
+
+Universal phase names (research / plan / complete / validate) are deliberately generic — non-GSD harnesses do not share GSD's milestone/slice phase vocabulary.
+
+## Idempotency
+
+<skip-check>
+  if the chosen target file contains the literal string `${agent-first-cli:setup-complete} = true`:
+    skip setup (it has already run)
+  else:
+    run setup
+</skip-check>
+
+The `<agent-first-cli>` XML wrapper around the skip-signal gives setup a structural anchor for `--force` replacement: find the list item (GSD) or block (Universal) starting with `<agent-first-cli>` and replace everything through `</agent-first-cli>`.
 
 ## Force re-init
 
-`agent-first-cli setup --force` bypasses the marker check. The agent locates the existing `<!-- agent-first-cli begin --> ... <!-- agent-first-cli end -->` block (in both `AGENTS.md` and, when present, the GSD preferences file) and replaces its contents with the snippets above. Without `--force`, an existing marker block causes setup to skip silently and proceed to the originally requested sub-command. This keeps re-runs idempotent and lets users explicitly refresh cues after upgrading the skill.
+`agent-first-cli setup --force` bypasses the skip-check on the chosen branch's target only. The branch decision is still made — `--force` does not cause both branches to run. If the host has switched harness types since the last setup (e.g. added `.gsd/PREFERENCES.md` later), the previous Universal-branch block in `AGENTS.md` is **not** removed by `--force`; clean it up manually.
+
+## What was fixed and why
+
+Previous versions described setup as "Universal only, or Universal + GSD" — implying both files get written in GSD projects — in the same breath as "do not write under `.gsd/`" — forbidding the GSD branch entirely. Both phrasings were bugs:
+
+- The GSD branch **must** write under `.gsd/` (the whole point is to put cues in the GSD preferences file).
+- The Universal branch **must not** write under `.gsd/` (the host is not a GSD project).
+- The two branches are **mutually exclusive**, not additive.
+
+This file makes the branching model explicit: probe once, pick one branch, merge into one target. The `<agent-first-cli>` skip-signal inside the cues is the single source of truth for "has setup already run."
