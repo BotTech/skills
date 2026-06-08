@@ -1,6 +1,15 @@
 # Evaluation Rubric — Agent-First CLI
 
-This file is the canonical 8-axis rubric spine for the agent-first-cli skill. It is consumed by `validate.md` (plan-mode checker) and `verify.md` (impl-mode checker), which both read the axis list, pass criteria, evidence expectations, and failure symptoms from here. It is **not** a sub-command of the skill — the skill never routes a user to eval.md directly. The strict bidirectional coverage rule (every axis maps to an Active R### or is marked out-of-scope; every R### this skill suggests maps to an axis or carries a justification) is stated authoritatively in `AGENTS.md`; this file does not redeclare that rule, it lists the axes the rule operates over.
+This file is the canonical 8-axis rubric spine for the agent-first-cli skill. It is consumed by `validate.md` (plan-mode checker) and `verify.md` (impl-mode checker), which both read the axis list, pass criteria, evidence expectations, and failure symptoms from here. It is **not** a sub-command of the skill — the skill never routes a user to eval.md directly.
+
+## Strict Bidirectional Coverage Rule
+
+Coverage is enforced bidirectionally against the axes in this file:
+
+- **Axis → R### (top-down):** every axis must map to an Active R### in the project's `REQUIREMENTS.md`, OR be marked `out-of-scope` with a reason. An uncovered axis is an error.
+- **R### → Axis (bottom-up):** every R### this skill suggests (via `references/requirements.md`) must carry an `Axis: N` tag in its Notes field (matching an axis below), OR an explicit justification if it intentionally does not map to a rubric axis. An orphan R### (no axis tag, no justification) is an error.
+
+`validate` (plan-mode) and `verify` (impl-mode) are the enforcement points for this rule. The rest of this file lists the axes the rule operates over.
 
 This file is reference content, not an executable. It writes nothing to the user's `.gsd/` and is harness-agnostic: no slash commands, no tool calls, no database reads. Where this file references concrete artifacts as evidence examples (file paths, sub-commands, JSON shapes), it draws from the gitignorer sample shipped under `assets/samples/gitignorer/` so an agent can corroborate the example against running code.
 
