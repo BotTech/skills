@@ -1,7 +1,7 @@
 ---
 name: agent-first-cli
 description: "Design, validate, and verify agent-first command-line interfaces. Provides research, planning, and lifecycle hooks for starting a new CLI project or refactoring an existing CLI to score well on the 8 agent-first axes (discoverability, invocation, I/O, state, errors, exit codes, idempotency, examples). Use when the user says 'agent-first CLI', 'new CLI project', 'CLI for agents', 'refactor this CLI for LLM use', 'score my CLI', 'validate my CLI plan', or 'verify my CLI build'."
-argument-hint: "[stack|features|architecture|pitfalls|requirements|validate|verify|setup]"
+argument-hint: "[stack|features|architecture|pitfalls|requirements|validate|verify|setup|--force]"
 metadata:
   version: 0.3.0
 ---
@@ -14,8 +14,18 @@ A content-and-checks skill for building CLIs that LLM agents can drive reliably.
   BEFORE any other sub-command, follow [setup.md](references/setup.md).
   If `${agent-first-cli:setup-complete} = true` is present in the chosen
   target file, skip. Otherwise run setup to completion before doing
-  anything else. Do not prompt the user; do not list sub-commands; do
-  not return control until setup is done or correctly skipped.
+  anything else.
+
+  - Do not prompt the user to choose a sub-command before setup completes
+    (or is correctly skipped). Do not list the sub-commands; do not return
+    control until setup is done or skipped.
+  - Setup writes to **exactly one** target file per invocation: either the
+    discovered `.gsd/PREFERENCES.md` (GSD branch) **or** the project-root
+    `AGENTS.md` (Universal branch). Never both, never neither. The probe
+    order and snippets live in `references/setup.md`.
+  - `setup` is also a normal sub-command: `agent-first-cli setup` reruns it
+    on demand; `agent-first-cli setup --force` rewrites the cues even if
+    `${agent-first-cli:setup-complete} = true` is already present.
 </setup>
 
 <routing>
@@ -35,18 +45,3 @@ A content-and-checks skill for building CLIs that LLM agents can drive reliably.
 
 </routing>
 
-<essential_principles>
-
-- **One sub-command loads one reference file.**
-- **Strict axis ↔ R### coverage.** Every axis → an Active R### or `out-of-scope`; every R### this skill suggests → an axis or a justification. See `AGENTS.md`.
-
-</essential_principles>
-
-<success_criteria>
-
-- On every invocation, the agent ran setup to completion before any other sub-command, OR correctly skipped setup because `${agent-first-cli:setup-complete} = true` was already present in the chosen target.
-- The agent did not prompt the user to choose a sub-command before setup completed (or was skipped).
-- If `setup` ran, the agent wrote to exactly one target — the one setup.md selected for this harness — and did not touch the other.
-- Each axis from `references/eval.md` traces to an Active R### or is marked out-of-scope with a reason.
-
-</success_criteria>

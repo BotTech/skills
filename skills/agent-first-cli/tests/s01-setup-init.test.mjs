@@ -3,9 +3,12 @@
 // Asserts that:
 //   (1) SKILL.md contains a <setup skip-iff="${agent-first-cli:setup-complete}">
 //       XML block (no <setup_logic>, no <detect_harness> — those belong in
-//       setup.md, not SKILL.md). The block must appear before
-//       <essential_principles> and must contain a markdown link to
-//       references/setup.md.
+//       setup.md, not SKILL.md). The block must contain a markdown link to
+//       references/setup.md, the exactly-one-target mutual-exclusion rule,
+//       and the `setup --force` re-run entry. SKILL.md must NOT contain
+//       <essential_principles> or <success_criteria> blocks; those were
+//       removed (principles live where the work happens, setup criteria
+//       live inside <setup>).
 //   (2) SKILL.md routing table contains 8 rows of the form
 //       `| \`agent-first-cli <name>\``, and the 8th name is `setup`.
 //   (3) references/setup.md exists, has an H1 line, has at least 3 H2
@@ -172,9 +175,8 @@ async function applySetup(projectRoot, homeDir, universalSnippet, gsdSnippet, fo
 }
 
 describe('S01 closure battery: setup branching model', () => {
-  it('(1) SKILL.md has <setup skip-iff=...> XML block with markdown link, before <essential_principles>', async () => {
+  it('(1) SKILL.md has <setup skip-iff=...> XML block with markdown link and self-contained branching contract', async () => {
     const text = await readFile(skillPath, 'utf8');
-    const lines = text.split(/\r?\n/);
 
     // The setup block must use the agreed XML form with the namespaced
     // skip-signal variable.
@@ -198,14 +200,22 @@ describe('S01 closure battery: setup branching model', () => {
       '<setup> body must link to references/setup.md via markdown link',
     );
 
-    // <setup> must appear before <essential_principles>.
-    const setupLineNo = lines.findIndex((l) => l.includes('<setup '));
-    const epLineNo = lines.findIndex((l) => l.includes('<essential_principles>'));
-    assert.notEqual(epLineNo, -1, 'SKILL.md must contain <essential_principles>');
+    // The setup block must self-contain the branching contract that
+    // previously lived in <success_criteria> and <essential_principles>:
+    // exactly-one-target mutual exclusion, and the availability of
+    // `setup` / `setup --force` as a normal sub-command.
     assert.ok(
-      setupLineNo < epLineNo,
-      `<setup> (line ${setupLineNo + 1}) must precede <essential_principles> (line ${epLineNo + 1})`,
+      /exactly one/i.test(setupBody),
+      '<setup> body must state the exactly-one-target mutual-exclusion rule',
     );
+    assert.ok(
+      /setup\s+--force/.test(setupBody),
+      '<setup> body must mention `setup --force` as a normal sub-command',
+    );
+
+    // The now-removed blocks must NOT be present.
+    assert.ok(!text.includes('<essential_principles>'), 'SKILL.md must NOT contain <essential_principles> (removed; principles live where the work happens)');
+    assert.ok(!text.includes('<success_criteria>'), 'SKILL.md must NOT contain <success_criteria> (removed; setup criteria moved into <setup>)');
   });
 
   it('(2) SKILL.md routing table has 8 rows; 8th name is `setup`', async () => {

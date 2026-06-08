@@ -18,9 +18,9 @@ Each sub-command loads exactly one reference file (progressive disclosure). Run 
 | `validate` | `references/validate.md` | Plan-mode — before execution, check axis coverage against PROJECT/REQUIREMENTS/ROADMAP/CONTEXT/PLAN |
 | `verify` | `references/verify.md` | Implementation-mode — after execution, check the built CLI against the 8-axis rubric |
 
-`references/eval.md` is the shared 8-axis rubric spine consumed by `validate` and `verify`; it is **not** a sub-command.
+`references/eval.md` is the shared 8-axis rubric spine consumed by `validate` and `verify`, **and** the authoritative home of the strict bidirectional Axis ↔ R### coverage rule. It is **not** a sub-command.
 
-The enforcement contract (strict bidirectional Axis ↔ R### coverage) lives in `AGENTS.md`.
+The enforcement contract (strict bidirectional Axis ↔ R### coverage) is stated authoritatively in `references/eval.md`; `AGENTS.md` documents the setup branching contract and points back to eval.md for the coverage rule.
 
 ## Sample asset: gitignorer
 
@@ -73,4 +73,4 @@ See `references/setup.md` for the full branching algorithm, the snippets, and th
 - It does not invoke harness-specific slash commands or tools outside setup's harness-detection probe. It is harness-agnostic.
 - It does not ship runtime code. The gitignorer sample is an *asset* (a reference CLI to verify against), not a dependency of the skill itself.
 
-For the strict coverage rule (every axis → R### or `out-of-scope`; every R### → axis or justification), see `AGENTS.md`. For the canonical axis list, see `references/eval.md`. For sub-command semantics and progressive-disclosure routing, see `SKILL.md`. For the setup branching model, see `references/setup.md`.
+For the strict coverage rule (every axis → R### or `out-of-scope`; every R### → axis or justification), see `references/eval.md` — the rule lives alongside the axes it operates over. For setup branching and the mutual-exclusion contract, see `AGENTS.md` and `references/setup.md`. For sub-command semantics and progressive-disclosure routing, see `SKILL.md`.
