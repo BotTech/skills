@@ -19,18 +19,6 @@ This repository contains custom skills that extend Claude Code's capabilities. E
 | Skill | Description | Trigger |
 |-------|-------------|---------|
 | [agent-first-cli](./skills/agent-first-cli/) | Design, validate, and verify agent-first command-line interfaces. Research/planning + plan-mode and impl-mode checks against the 8 agent-first axes (discoverability, invocation, I/O, state, errors, exit codes, idempotency, examples). | "agent-first CLI", "new CLI project", "refactor this CLI for LLM use", "score my CLI", "validate my CLI plan", "verify my CLI build". |
-| [timesheet](./skills/timesheet/) | Manage weekly timesheets in Google Sheets with NZ public holiday tracking. Per-day breakdown of work, PTO, holiday, and unpaid hours. Cumulative totals and remaining balances. | "timesheet", "fill timesheet", "record PTO", "record leave", "update hours", "check hours", "PTO remaining", "holiday balance". |
-
-## Updating from before v0.2
-
-The prior `gsd-new-cli-project` skill (and the standalone `agent-dx-cli-eval` evaluator) have been merged into the single [`agent-first-cli`](./skills/agent-first-cli/) skill. Users who installed the old name should run:
-
-```bash
-npx skills remove gsd-new-cli-project
-npx skills add https://github.com/bottech/skills
-```
-
-Do **not** keep both `gsd-new-cli-project` and `agent-first-cli` installed side-by-side — they cover the same surface and double-loading causes routing confusion.
 
 ## Sample asset
 
